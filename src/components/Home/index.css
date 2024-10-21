@@ -1,0 +1,88 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.home-content {
+  text-align: center;
+  padding-top: 300px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.add-restaurant {
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-restaurant h2 {
+  margin: 0 0 10px;
+}
+
+.add-restaurant form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-restaurant input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-restaurant button {
+  padding: 10px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-restaurant button:hover {
+  background-color: #45a049;
+}
+
+.restaurant-list {
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.restaurant-item h3 {
+  margin: 0;
+}
+
+.restaurant-item p {
+  margin: 5px 0;
+}
+
+.restaurant-item button {
+  margin-right: 5px;
+}
+.flex-container {
+  display: flex;
+  gap: 20px; /* Adjust the spacing as needed */
+}
+
+.restaurant-list {
+  flex: 1; /* Allows the restaurant list to grow and fill available space */
+}
+
+.edit-restaurant {
+  flex: 1; /* Allows the edit form to grow and fill available space */
+  min-width: 300px; /* Optional: Set a minimum width for the edit form */
+}

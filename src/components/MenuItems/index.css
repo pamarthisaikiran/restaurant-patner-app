@@ -1,0 +1,114 @@
+/* General styles for the menu list */
+.menu-list {
+    max-width: 1200px; /* Increase the max width for more items per row */
+    margin: auto; /* Center the menu list */
+    
+    padding-top: 150px; /* Add padding */
+    padding-left: 150px; /* Add padding */
+    padding-right: 150px; /* Add padding */
+    background-color: #fff; /* White background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect for depth */
+  }
+  
+  h2 {
+    text-align: center; /* Center align the heading */
+    color: #007bff; /* Blue color for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+  }
+  
+  ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove padding */
+    display: grid; /* Use grid for layout */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid layout */
+    gap: 20px; /* Space between grid items */
+  }
+  
+  .menu-item {
+    border: 1px solid #dee2e6; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Padding inside each menu item */
+    background-color: #f9f9f9; /* Light background color */
+    transition: box-shadow 0.3s ease; /* Transition for hover effect */
+    text-align: center; /* Center the content */
+  }
+  
+  .menu-item:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Shadow on hover */
+  }
+  
+  .menu-image {
+    width:100px;
+    height:100px;
+    border-radius: 5px; /* Rounded corners for images */
+    margin-bottom: 10px; /* Space below the image */
+  }
+  
+  button {
+    background-color: #007bff; /* Blue background for buttons */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    padding: 8px 12px; /* Smaller padding inside buttons */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Transition for hover effect */
+    margin: 5px; /* Space between buttons */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  form {
+    display: flex; /* Use flexbox for form layout */
+    flex-direction: column; /* Arrange inputs in a column */
+    gap: 10px; /* Space between inputs */
+    margin-top: 20px; /* Space above the form */
+  }
+  
+  input[type="text"] {
+    width: calc(100% - 20px); /* Full width with padding adjustment */
+    padding: 10px; /* Padding inside the input */
+    margin: 5px 0; /* Space between inputs */
+    border: 1px solid #ced4da; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    ul {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust columns for smaller screens */
+    }
+  
+    .menu-list {
+      padding: 15px; /* Adjust padding for mobile */
+    }
+  
+    h2 {
+      font-size: 1.5rem; /* Smaller font size for heading on mobile */
+    }
+  
+    .menu-item {
+      margin: 10px 0; /* Adjust margin for menu items on mobile */
+    }
+  
+    button {
+      padding: 8px 10px; /* Smaller padding inside buttons on mobile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    ul {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust columns for very small screens */
+    }
+  
+    h2 {
+      font-size: 1.2rem; /* Smaller font size for heading on very small screens */
+    }
+  
+    input[type="text"] {
+      padding: 8px; /* Smaller padding inside inputs on mobile */
+    }
+  }
+  

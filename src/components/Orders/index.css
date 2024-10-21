@@ -1,0 +1,54 @@
+/* index.css */
+
+.orders-list {
+    padding: 20px;
+    max-width: 800px; /* Limit the width of the orders list */
+    margin: auto; /* Center the orders list */
+    font-family: Arial, sans-serif; /* Set a font for the text */
+  }
+  
+  h2 {
+    text-align: center; /* Center the heading */
+    color: #333; /* Darker color for the heading */
+  }
+  
+  .order-item {
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    margin: 15px 0; /* Space between order items */
+    padding: 15px; /* Padding inside each order item */
+    background-color: #f9f9f9; /* Light background color */
+    transition: box-shadow 0.3s ease; /* Transition for hover effect */
+  }
+  
+  .order-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+  }
+  
+  .order-detail {
+    margin-left: 20px; /* Indent item details */
+    border-left: 2px solid #007BFF; /* Blue left border for item details */
+    padding-left: 10px; /* Padding for left indent */
+    margin-top: 5px; /* Space above item details */
+  }
+  
+  h3, h4 {
+    margin: 5px 0; /* Margin around headings */
+    color: #007BFF; /* Blue color for headings */
+  }
+  
+  p {
+    margin: 5px 0; /* Space between paragraphs */
+    color: #555; /* Gray color for text */
+  }
+  
+  .loading {
+    text-align: center; /* Center loading message */
+    font-style: italic; /* Italic style for loading */
+  }
+  
+  .no-orders {
+    text-align: center; /* Center no orders message */
+    font-weight: bold; /* Bold style for no orders message */
+  }
+  
