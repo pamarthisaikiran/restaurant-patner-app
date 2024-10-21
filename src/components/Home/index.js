@@ -17,10 +17,12 @@ const Home = () => {
     longitude: null,
     open: true,
     imageUrl: '',  // New field for image URL
+    category: '',   // New field for category
   });
   const [editId, setEditId] = useState(null);
   const [isLoadingMap, setIsLoadingMap] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [isAuthChecked, setIsAuthChecked] = useState(false); // New loading state for authentication check
   const navigate = useNavigate();
   
   const user = auth.currentUser;
@@ -45,13 +47,23 @@ const Home = () => {
   };
 
   useEffect(() => {
+    // Check for user authentication
+    const unsubscribeAuth = auth.onAuthStateChanged((currentUser) => {
+      if (!currentUser) {
+        navigate('/login');
+      }
+      setIsAuthChecked(true); // Mark that the authentication check is complete
+    });
+
     const unsubscribe = fetchRestaurants();
+    
     return () => {
+      unsubscribeAuth();
       if (typeof unsubscribe === 'function') {
         unsubscribe();
       }
     };
-  }, [navigate, user]);
+  }, [navigate]);
 
   useEffect(() => {
     setIsLoadingMap(false);
@@ -72,7 +84,7 @@ const Home = () => {
       try {
         await updateDoc(doc(db, 'restaurants', editId), { ...restaurantData });
         setEditId(null);
-        setRestaurantData({ name: '', city: '', area: '', location: '', latitude: null, longitude: null, open: true, imageUrl: '' });
+        setRestaurantData({ name: '', city: '', area: '', location: '', latitude: null, longitude: null, open: true, imageUrl: '', category: '' });
       } catch (error) {
         console.error("Error updating restaurant:", error);
       }
@@ -80,7 +92,7 @@ const Home = () => {
       if (restaurants.length === 0) {
         try {
           await addDoc(collection(db, 'restaurants'), { ...restaurantData, owner_id: user.uid });
-          setRestaurantData({ name: '', city: '', area: '', location: '', latitude: null, longitude: null, open: true, imageUrl: '' });
+          setRestaurantData({ name: '', city: '', area: '', location: '', latitude: null, longitude: null, open: true, imageUrl: '', category: '' });
         } catch (error) {
           console.error("Error adding restaurant:", error);
         }
@@ -104,7 +116,7 @@ const Home = () => {
   };
 
   const handleCancel = () => {
-    setRestaurantData({ name: '', city: '', area: '', location: '', latitude: null, longitude: null, open: true, imageUrl: '' });
+    setRestaurantData({ name: '', city: '', area: '', location: '', latitude: null, longitude: null, open: true, imageUrl: '', category: '' });
     setEditId(null);
   };
 
@@ -119,6 +131,10 @@ const Home = () => {
     }));
     setIsLoadingMap(true);
   };
+
+  if (!isAuthChecked) {
+    return <div className="loading-spinner"><p>Loading...</p></div>; // Show loading spinner until auth is checked
+  }
 
   if (loading) {
     return (
@@ -145,14 +161,13 @@ const Home = () => {
                 {restaurants.map((restaurant) => (
                   <li key={restaurant.id} className="restaurant-item">
                     <h3>{restaurant.name}</h3>
-                     <img src={restaurant.imageUrl} alt="Restaurant" width="100" /> {/* Display restaurant image */}
+                    <img src={restaurant.imageUrl} alt="Restaurant" width="100" /> {/* Display restaurant image */}
                     <p>City: {restaurant.city}</p>
                     <p>Area: {restaurant.area}</p>
                     <p>Location: {restaurant.location}</p>
                     <p>Latitude: {restaurant.latitude}</p>
                     <p>Longitude: {restaurant.longitude}</p>
                     <p>Status: {restaurant.open ? 'Open' : 'Closed'}</p>
-                   
                     <button onClick={() => handleToggleOpen(restaurant.id, restaurant.open)}>
                       {restaurant.open ? 'Close Restaurant' : 'Open Restaurant'}
                     </button>
@@ -212,6 +227,13 @@ const Home = () => {
               onChange={(e) => setRestaurantData({ ...restaurantData, imageUrl: e.target.value })}
               placeholder="Restaurant Image URL"
             />
+            <input
+              type="text"
+              name="category"
+              value={restaurantData.category}  // New input for restaurant category
+              onChange={(e) => setRestaurantData({ ...restaurantData, category: e.target.value })}
+              placeholder="Category"
+            />
             <div style={{ height: '400px', width: '100%' }}>
               <LoadScript googleMapsApiKey="AIzaSyB9h-k-OL3pA1g0IGAJ9tfdX0w0H3g1orA">
                 <GoogleMap
@@ -229,10 +251,9 @@ const Home = () => {
                   )}
                 </GoogleMap>
               </LoadScript>
-              {isLoadingMap && <p>Loading map...</p>}
             </div>
-            <button type="submit">{editId ? 'Update Restaurant' : 'Add Restaurant'}</button>
-            <button type="button" onClick={handleCancel}>Cancel</button>
+            <button type="submit">{editId ? 'Update' : 'Add'}</button>
+            {editId && <button onClick={handleCancel}>Cancel</button>}
           </form>
         </div>
       </div>

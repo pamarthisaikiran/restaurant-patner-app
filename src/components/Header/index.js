@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase'; // Make sure to import your Firebase auth instance
 import Cookies from "js-cookie";
-import { signOut } from 'firebase/auth'; // Import signOut from Firebase
+
 import "./index.css"
 
 const Header = () => {
